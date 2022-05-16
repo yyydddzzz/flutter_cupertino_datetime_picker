@@ -299,6 +299,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
       height: widget.pickerTheme.pickerHeight,
       decoration: BoxDecoration(color: widget.pickerTheme.backgroundColor),
       child: CupertinoPicker.builder(
+        diameterRatio: widget.pickerTheme.diameterRatio,
         backgroundColor: widget.pickerTheme.backgroundColor,
         scrollController: scrollCtrl,
         selectionOverlay: widget.pickerTheme.selectionOverlay ??

@@ -7,6 +7,9 @@ const DATETIME_PICKER_BACKGROUND_COLOR = Colors.white;
 /// Default value of whether show title widget or not.
 const DATETIME_PICKER_SHOW_TITLE_DEFAULT = true;
 
+/// Default value of diameter ratio.
+const DATETIME_PICKER_DIAMETER_RATIO_DEFAULT = 1.07;
+
 /// Default value of DatePicker's height.
 const double DATETIME_PICKER_HEIGHT = 210.0;
 
@@ -44,6 +47,7 @@ class DateTimePickerTheme with Diagnosticable {
     this.confirm,
     this.title,
     this.selectionOverlay,
+    this.diameterRatio = DATETIME_PICKER_DIAMETER_RATIO_DEFAULT,
     this.showTitle: DATETIME_PICKER_SHOW_TITLE_DEFAULT,
     this.pickerHeight: DATETIME_PICKER_HEIGHT,
     this.titleHeight: DATETIME_PICKER_TITLE_HEIGHT,
@@ -73,6 +77,9 @@ class DateTimePickerTheme with Diagnosticable {
 
   /// Custom selection Overlay [Widget]. If specify a selection widget, the default will be overwritten.
   final Widget? selectionOverlay;
+
+  ///Relative ratio between this picker's height and the simulated cylinder's diameter.
+  final double diameterRatio;
 
   /// Whether display title widget or not. If set false, the default cancel and confirm widgets will not display, but the custom title widget will display if had specified one custom title widget.
   final bool showTitle;
