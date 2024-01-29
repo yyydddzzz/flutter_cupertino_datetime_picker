@@ -449,7 +449,11 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
       int currMonth = _currMonth;
       _monthScrollCtrl.jumpToItem(monthRange.last - monthRange.first);
       if (currMonth < monthRange.last) {
-        _monthScrollCtrl.jumpToItem(currMonth - monthRange.first);
+        int itemIndex = currMonth - monthRange.first;
+        _monthScrollCtrl.jumpToItem(itemIndex);
+        Future.delayed(Duration(seconds: 0), () {
+          _changeMonthSelection(itemIndex);
+        });
       }
     }
 
@@ -458,7 +462,11 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
       int currDay = _currDay;
       _dayScrollCtrl.jumpToItem(dayRange.last - dayRange.first);
       if (currDay < dayRange.last) {
-        _dayScrollCtrl.jumpToItem(currDay - dayRange.first);
+        int itemIndex = currDay - dayRange.first;
+        _dayScrollCtrl.jumpToItem(itemIndex);
+        Future.delayed(Duration(seconds: 0), () {
+          _changeDaySelection(itemIndex);
+        });
       }
     }
 
@@ -467,7 +475,11 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
       int currHour = _currHour;
       _hourScrollCtrl.jumpToItem(hourRange.last - hourRange.first);
       if (currHour < hourRange.last) {
-        _hourScrollCtrl.jumpToItem(currHour - hourRange.first);
+        int itemIndex = currHour - hourRange.first;
+        _hourScrollCtrl.jumpToItem(itemIndex);
+        Future.delayed(Duration(seconds: 0), () {
+          _changeHourSelection(itemIndex);
+        });
       }
     }
 
@@ -477,7 +489,11 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
       _minuteScrollCtrl
           .jumpToItem((minuteRange.last - minuteRange.first) ~/ _minuteDivider);
       if (currMinute < minuteRange.last) {
-        _minuteScrollCtrl.jumpToItem(currMinute - minuteRange.first);
+        int itemIndex = currMinute - minuteRange.first;
+        _minuteScrollCtrl.jumpToItem(itemIndex);
+        Future.delayed(Duration(seconds: 0), () {
+          _changeMinuteSelection(itemIndex);
+        });
       }
     }
 
@@ -584,7 +600,7 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
     if (_currYear == _maxTime.year &&
         _currMonth == _maxTime.month &&
         _currDay == _maxTime.day &&
-        _currHour == _minTime.hour) {
+        _currHour == _maxTime.hour) {
       // selected maximum day、hour, limit minute range
       maxMinute = _maxTime.minute;
     }
@@ -613,8 +629,8 @@ class _DateTimePickerWidgetState extends State<DateTimePickerWidget> {
     if (_currYear == _maxTime.year &&
         _currMonth == _maxTime.month &&
         _currDay == _maxTime.day &&
-        _currHour == _minTime.hour &&
-        _currMinute == _minTime.minute) {
+        _currHour == _maxTime.hour &&
+        _currMinute == _maxTime.minute) {
       // selected maximum hour and minute, limit second range
       maxSecond = _maxTime.second;
     }
